@@ -32,6 +32,14 @@
             <version>9.2.0</version>
         </dependency>
 
+        <!-- STRIPE -->
+        <dependency>
+            <groupId>com.stripe</groupId>
+            <artifactId>stripe-java</artifactId>
+            <version>24.0.0</version>
+        </dependency>
+
+
 
         <!-- GENERACIÓN DE TOKENS -->
         <dependency>

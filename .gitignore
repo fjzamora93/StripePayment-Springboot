@@ -6,7 +6,7 @@ target/
 
 
 # GENERAL 
-src/main/resources/**/*.json
+src/main/resources/
 .idea/
 
 
