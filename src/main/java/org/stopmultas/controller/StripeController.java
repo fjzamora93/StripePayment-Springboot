@@ -2,6 +2,7 @@ package org.stopmultas.controller;
 
 import com.stripe.exception.StripeException;
 
+import org.stopmultas.model.PaymentConfirmationRequest;
 import org.stopmultas.model.PaymentRequest;
 import org.stopmultas.service.StripeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class StripeController {
     }
 
     @PostMapping("/confirm-payment")
-    public ResponseEntity<Map<String, String>> confirmPayment(@RequestBody Map<String, Object> request) {
+    public ResponseEntity<Map<String, String>> confirmPayment(@RequestBody PaymentConfirmationRequest request) {
         try {
             String result = stripeService.confirmPayment(request);
             return ResponseEntity.ok(Map.of("status", result));

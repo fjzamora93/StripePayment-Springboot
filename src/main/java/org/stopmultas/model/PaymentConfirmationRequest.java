@@ -3,7 +3,7 @@ package org.stopmultas.model;
 import lombok.Data;
 
 @Data 
-public class PaymentConfirmation {
+public class PaymentConfirmationRequest {
 
     private String paymentIntentId; 
         

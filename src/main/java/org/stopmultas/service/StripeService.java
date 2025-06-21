@@ -5,12 +5,13 @@ import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;
+
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.stopmultas.model.PaymentConfirmationRequest;
 import org.stopmultas.model.PaymentRequest;
 
 import jakarta.annotation.PostConstruct;
-import java.util.Map;
 
 
 @Service
@@ -39,12 +40,21 @@ public class StripeService {
     }
 
 
-    /***
-     * Crea el intento de pago, es decir, la pasarela que verá el usuario para poder realizar el pago
-     */
+    /**Crea el intento de pago, es decir, la pasarela que verá el usuario para poder realizar el pago*/
+    // TODO : El PaymentIntent no está vinculado a ningún Customer de Stripe.
+    // TODO: Manejar idempotencia para evitar cargos duplicados
+    // TODO Meter logs con el intento de creación
+    // TODO: El PaymentIntent se crea en Stripe, pero no se guarda su ID o metadata en una base de datos local.
+    // TODO: No hay control de excepciones personalizado. El método lanza directamente StripeException, pero no hay lógica para distinguir el tipo de error.
+
     public String createPaymentIntent(PaymentRequest paymentRequest) throws StripeException {
+
+        // OBTENEMOS EL USUARIO DESDE EL CONTEXTO (Ahora podemos asociar el pago al usuario)
+        String userId = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
         Long amount = paymentRequest.getAmount();
-        String currency = paymentRequest.getCurrency();
+        String currency = "EUR";
 
         PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
                 .setAmount(amount)

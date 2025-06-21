@@ -26,6 +26,7 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
         String idToken = header.replace("Bearer ", "");
         try {
             FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken);
+            String uid = decodedToken.getUid(); // <-- este es el userId
             // Aquí puedes guardar info del usuario en el contexto de seguridad si lo necesitas
             filterChain.doFilter(request, response);
         } catch (Exception e) {
