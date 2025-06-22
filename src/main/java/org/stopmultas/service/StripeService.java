@@ -46,7 +46,6 @@ public class StripeService {
     // TODO Meter logs con el intento de creación
     // TODO: El PaymentIntent se crea en Stripe, pero no se guarda su ID o metadata en una base de datos local.
     // TODO: No hay control de excepciones personalizado. El método lanza directamente StripeException, pero no hay lógica para distinguir el tipo de error.
-
     public String createPaymentIntent(PaymentRequest paymentRequest) throws StripeException {
 
         // OBTENEMOS EL USUARIO DESDE EL CONTEXTO (Ahora podemos asociar el pago al usuario)
@@ -96,7 +95,7 @@ public class StripeService {
 
 
 
-    // TODO: COMPLEMENTAR CON UN WEBHOOK PARA AUTOMATIZAR LA CONFIRMACIÓN DE LOS PAGOS
+    // TODO: COMPLEMENTAR CON UN WEBHOOK PARA AUTOMATIZAR LA CONFIRMACIÓN DE LOS PAGOS_
     // TODO: UN WEBHOOK PUEDE PREVENIR QUE EL CLIENTE CIERRE LA APLICACIÓN O SITUACIONES SIMIALRES
     
 }
