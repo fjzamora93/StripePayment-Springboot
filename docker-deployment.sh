@@ -18,7 +18,7 @@ echo -e "${green}Compilación exitosa.${reset}"
 
 # Paso 2: Construir la imagen Docker
 echo -e "${green}Construyendo imagen Docker...${reset}"
-if ! docker build -t retodam .; then
+if ! docker build -t stopmultas-springboot .; then
     echo -e "${red}Error: Fallo en docker build.${reset}"
     exit 1
 fi
@@ -27,13 +27,13 @@ echo -e "${green}Imagen Docker creada con éxito.${reset}"
 
 # Paso 3: Etiquetar la imagen Docker
 echo -e "${green}Etiquetando imagen Docker...${reset}"
-docker tag retodam fjzamora93/retodam:latest
+docker tag stopmultas-springboot fjzamora93/stopmultas-springboot:latest
 
 echo -e "${green}Imagen etiquetada correctamente.${reset}"
 
 # Paso 4: Subir la imagen a Docker Hub
 echo -e "${green}Subiendo imagen a Docker Hub...${reset}"
-if ! docker push fjzamora93/retodam:latest; then
+if ! docker push fjzamora93/stopmultas-springboot:latest; then
     echo -e "${red}Error: Fallo en docker push. Verifica que estás autenticado.${reset}"
     exit 1
 fi

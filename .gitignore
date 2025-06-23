@@ -8,7 +8,7 @@ target/
 # GENERAL 
 src/main/resources/
 .idea/
-
+.env
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
