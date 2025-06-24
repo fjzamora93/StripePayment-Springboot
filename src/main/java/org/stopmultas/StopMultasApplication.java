@@ -4,7 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import io.github.cdimascio.dotenv.Dotenv;
+import jakarta.annotation.PostConstruct;
+
 
 // TRAS ARRANCAR, ACCEDER A http://localhost:8080/api/
 @SpringBootApplication
@@ -12,11 +13,8 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 public class StopMultasApplication {
 
-    static {
-        Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
-        dotenv.entries().forEach(entry -> System.setProperty(entry.getKey(), entry.getValue()));
-    }
     public static void main(String[] args) {
         SpringApplication.run(StopMultasApplication.class, args);
     }
+
 }

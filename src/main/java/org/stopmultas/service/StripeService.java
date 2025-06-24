@@ -1,10 +1,12 @@
 package org.stopmultas.service;
 
-import com.google.api.client.util.Value;
+import org.springframework.beans.factory.annotation.Value;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;
+
+import jakarta.annotation.PostConstruct;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,12 @@ public class StripeService {
 
     private Long pricing;
 
-    public StripeService() {
+    @PostConstruct
+    public void init() {
+        System.out.println("Modo de Stripe: " + stripeMode);
+        System.out.println("Clave de prueba: " + testSecretKey);
+        System.out.println("Clave en producción: " + liveSecretKey);
+
         if ("live".equalsIgnoreCase(stripeMode)) {
             activeSecretKey = liveSecretKey;
         } else {
