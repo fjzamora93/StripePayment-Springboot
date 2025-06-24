@@ -10,7 +10,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.stopmultas.model.PaymentConfirmationRequest;
 
-import jakarta.annotation.PostConstruct;
 
 
 @Service
@@ -29,17 +28,16 @@ public class StripeService {
 
     private Long pricing;
 
-    @PostConstruct
-    public void init() {
+    public StripeService() {
         if ("live".equalsIgnoreCase(stripeMode)) {
             activeSecretKey = liveSecretKey;
         } else {
             activeSecretKey = testSecretKey;
         }
-
         Stripe.apiKey = activeSecretKey;
         pricing = 599L;
     }
+
 
     public Long getPricing() {
         return pricing;
