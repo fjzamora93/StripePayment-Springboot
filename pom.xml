@@ -39,6 +39,7 @@
             <version>24.0.0</version>
         </dependency>
 
+<!-- CARGAR VARIABLES DE ENTORNO .ENV-->
         <dependency>
             <groupId>io.github.cdimascio</groupId>
             <artifactId>dotenv-java</artifactId>
