@@ -4,14 +4,12 @@ import com.stripe.exception.StripeException;
 
 import org.stopmultas.model.PaymentConfirmationRequest;
 import org.stopmultas.model.PaymentConfirmationResponse;
-import org.stopmultas.model.PaymentRequest;
 import org.stopmultas.model.PaymentResponse;
 import org.stopmultas.service.StripeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/payment")
@@ -24,12 +22,10 @@ public class StripeController {
         this.stripeService = stripeService;
     }
 
-    @PostMapping("/create-payment-intent")
-    public ResponseEntity<PaymentResponse> createPaymentIntent(
-        @RequestBody PaymentRequest paymentRequest
-        ) {
+    @GetMapping("/create-payment-intent")
+    public ResponseEntity<PaymentResponse> createPaymentIntent() {
         try {
-            String clientSecret = stripeService.createPaymentIntent(paymentRequest);
+            String clientSecret = stripeService.createPaymentIntent();
             return ResponseEntity.ok(new PaymentResponse(clientSecret, null));
         } catch (StripeException e) {
             return ResponseEntity.status(500).body(
@@ -52,5 +48,10 @@ public class StripeController {
                 e.getMessage()
             ));
         }
+    }
+
+    @GetMapping("/pricing")
+    public ResponseEntity<Long> getPricing() {
+        return ResponseEntity.ok(stripeService.getPricing());
     }
 }
