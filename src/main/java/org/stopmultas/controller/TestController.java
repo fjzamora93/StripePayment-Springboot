@@ -12,7 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/test-endpoint")
 public class TestController {
 
-        @GetMapping()
+
+        @GetMapping("/")
+        public String home() {
+                return "¡Hola! Tu aplicación Spring Boot está funcionando correctamente.";
+        }
+
+        @GetMapping("/test")
         public ResponseEntity<String> testEndpoint() { 
                 return ResponseEntity.ok("Test endpoint is working!");
         }

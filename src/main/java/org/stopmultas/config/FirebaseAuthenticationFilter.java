@@ -22,7 +22,16 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+
+        // 🔓 Permitir rutas de test sin validación
+        String requestURI = request.getRequestURI();
+        if (requestURI.contains("test")) {
+            System.out.println("✅ Endpoint de test detectado, permitiendo acceso sin autenticación");
+            filterChain.doFilter(request, response);
+            return;
+        }
         String header = request.getHeader("Authorization");
+
         if (header == null || !header.startsWith("Bearer ")) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
@@ -37,7 +46,8 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
             UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(uid, null, Collections.emptyList());
             SecurityContextHolder.getContext().setAuthentication(authentication);
-
+            System.out.println("🔍 Header Authorization: " + header);
+            System.out.println("🔍 Token extraído: " + idToken);
 
             filterChain.doFilter(request, response);
         } catch (Exception e) {

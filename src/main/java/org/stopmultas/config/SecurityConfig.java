@@ -21,7 +21,8 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .cors(cors -> cors.and()) // Habilitar CORS
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/public/**", "/auth/**").permitAll() // Rutas públicas
+                //.anyRequest().permitAll() 
+                .requestMatchers("/public/**",  "/api/test-endpoint/**", "/auth/**").permitAll() 
                 .anyRequest().authenticated() // El resto requiere autenticación
             )
             .addFilterBefore(firebaseAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

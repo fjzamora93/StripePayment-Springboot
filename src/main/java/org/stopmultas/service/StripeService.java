@@ -11,6 +11,8 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.stopmultas.model.PaymentConfirmationRequest;
+import org.stopmultas.model.PriceUpdateRequest;
+import org.stopmultas.model.PriceUpdateResponse;
 
 
 
@@ -48,6 +50,11 @@ public class StripeService {
 
     public Long getPricing() {
         return pricing;
+    }
+
+    public PriceUpdateResponse updatePricing(PriceUpdateRequest newPricing) {
+        this.pricing = newPricing.getNewPricing();
+        return new PriceUpdateResponse(true, pricing, "Precio actualizado correctamente");
     }
 
 

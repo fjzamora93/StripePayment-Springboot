@@ -1,5 +1,8 @@
 # Configuración variables de entorno
 
+Arrancar servidor:
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8081"
+
 ## 1. Cargar las claves en el .env
 
 Se cargan las claves secretas en el .env.

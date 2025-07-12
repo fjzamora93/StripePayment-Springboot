@@ -5,6 +5,8 @@ import com.stripe.exception.StripeException;
 import org.stopmultas.model.PaymentConfirmationRequest;
 import org.stopmultas.model.PaymentConfirmationResponse;
 import org.stopmultas.model.PaymentResponse;
+import org.stopmultas.model.PriceUpdateRequest;
+import org.stopmultas.model.PriceUpdateResponse;
 import org.stopmultas.service.StripeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -53,5 +55,11 @@ public class StripeController {
     @GetMapping("/pricing")
     public ResponseEntity<Long> getPricing() {
         return ResponseEntity.ok(stripeService.getPricing());
+    }
+
+    @PostMapping("/pricing")
+    public ResponseEntity<PriceUpdateResponse> updatePricing(@RequestBody PriceUpdateRequest priceUpdateRequest) {
+        System.out.println("🔍 priceUpdateRequest: " + priceUpdateRequest);
+        return ResponseEntity.ok(stripeService.updatePricing(priceUpdateRequest));
     }
 }
