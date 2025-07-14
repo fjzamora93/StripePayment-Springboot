@@ -1,7 +1,8 @@
 # Configuración variables de entorno
 
 Arrancar servidor:
-mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8081"
+sudo kill -9 $(sudo lsof -t -i:8080)
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8080"
 
 ## 1. Cargar las claves en el .env
 
