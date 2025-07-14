@@ -25,7 +25,7 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
 
         // 🔓 Permitir rutas de test sin validación
         String requestURI = request.getRequestURI();
-        if (requestURI.contains("/")) {
+        if (requestURI.contains("test")) {
             System.out.println("✅ Endpoint de test detectado, permitiendo acceso sin autenticación");
             filterChain.doFilter(request, response);
             return;
