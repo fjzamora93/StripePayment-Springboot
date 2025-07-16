@@ -44,7 +44,7 @@ public class StripeService {
             activeSecretKey = testSecretKey;
         }
         Stripe.apiKey = activeSecretKey;
-        pricing = 599L;
+        pricing = 50L;
     }
 
 
